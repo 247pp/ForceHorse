@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>上传个人签字</title>
+    <link rel="stylesheet" href="./css/1.css/style.css">
+    <script src="./js/jquery-1.11.3.min.js"></script>
+    <script src="./js/public.js"></script>
+    <script src="./js/common.js"></script>
+  
+</head>
+<body>
+    <div id='upload-sign'>
+        <header style="position: fixed;z-index:10;">
+            <a style="position: fixed;" href="javascript:history.back(1)">
+                <img src="./img/speatil/back_icon2.png" alt="">
+                <span>返回</span>
+                <span>关闭</span>
+                <p>签署个人签字</p>
+            </a>
+        </header>
+        <div style='width: 100%;height:2.5rem;'></div>
+        <div class="content">
+            <h6>签署个人签字</h6>
+            <div class="canvas-box">
+                    <canvas id="myCanvas"></canvas>
+                    <div id='tishi'>请在此手写自己签字</div>
+                    <div class="control-ops control">
+                        <button type="button" class="btn btn-primary" onclick="javascript:clearArea();return false;">取消</button>
+                        <button type="button" class="saveimg" onclick="javascript:saveImageInfo();return false;">确定</button>
+                    </div>
+                    <div class="saveimgs"></div>
+                </div>
+        </div>
+    </div>
+</body>
+<script src="./js/liuyan.js"></script>
+</html>

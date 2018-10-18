@@ -1,0 +1,350 @@
+@function num($a){
+    @return $a/40+rem;
+ }
+*{margin: 0;padding: 0;box-sizing: border-box;list-style-type:none;text-decoration: none;}
+.clearfix:after {
+    visibility: hidden;
+    clear: both;
+    display: block;
+    content: "";
+    width: 0;
+    height: 0;
+  }
+.clearfix {
+*zoom: 1;
+}
+html,body{
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin:0;
+    font-family:PingFang-SC-Medium;
+    background: #FAF9F9;
+}
+#suanli_Type {
+    width: 100%;
+    height: 100%;
+    background: #FAF9F9;
+    header{
+        width: 100%;;
+        height: num(100);
+        background: #0856F9;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 10;
+        display: flex;
+        justify-content: baseline;
+        .back_web{
+            display: block;
+            width: 20%;
+            height: num(100);
+            .back {
+                width: num(15);
+                height: num(30);
+                margin-left: num(30);
+                margin-top: num(35);
+            }
+            span{
+                font-size:num(34);
+                color: #fff; 
+                margin-left: num(5);    
+                display: inline-block;           
+            }
+        } 
+            .closehtml{
+                width: 10%;
+                font-size:num(34);
+                color: #fff; 
+                // margin-left: num(5);    
+                display: inline-block;
+                text-align: center;
+                margin-top: num(30);
+            }
+            p {
+                width:60%;
+                font-size:num(34);
+                font-family:PingFang-SC-Medium;
+                font-weight:500;
+                line-height: num(100);
+                color:#ffffff;
+                padding-left: 13%;
+            }
+
+        .menuLink{
+            position: absolute;
+            top:0;
+            right: 0;
+            z-index: 200;
+            width:num(55);
+            height: 100%;
+            padding-top:num(25);
+            .menus {
+                width: num(25);
+                height:num(30);
+            }
+        }
+    }
+    #suanli_types {
+        position: fixed;
+        top: num(90);
+        left: 0;
+        z-index: 10;
+        width:200%;
+        height: num(102);
+        overflow: hidden;
+        background: #ffffff;
+        border-bottom:1px solid rgba(0,0,0,.15);  
+        section {
+            position: absolute;
+            top:0;
+            left:0;
+            width: auto;
+            height: num(100);
+            overflow-x: scroll;
+            padding-left:num(17);
+            padding-right: num(17);  
+            &::-webkit-scrollbar {
+                width: 0;
+                height: 0;
+                display: none;
+            }
+            .tabType_pub {
+                float: left; 
+                height: 100%;
+                line-height: num(100);
+                color: rgba(153,153,153,1);
+                font-size: num(28);
+                text-align: center;
+                padding:0 num(30);
+                margin-right: num(30);
+                border-bottom: 2px solid transparent;
+                font-family: PingFang-SC-Medium;  
+                &.active {
+                    color:#333333;
+                    border-bottom: 1px solid #1D92FE;
+                }
+                &:nth-last-of-type(1) {
+                    margin-right: 0;  
+                }  
+            }
+        }
+    }
+
+    #contents {
+        width: 100%;
+        height: auto;
+        margin-top: num(10);
+        margin-bottom: num(120);
+        .pub_list {
+            width:100%;
+            height: num(360);
+            background: #ffffff;
+            padding: num(25) num(30) 0;
+            margin-bottom: num(26);
+            .suanli_name {
+                width: 100%;
+                color:rgba(0,0,0,1);
+                line-height:num(40);
+                font-size: num(32);
+                word-wrap: break-word;
+            }
+            .suanli_sm {
+                width: 100%;
+                margin-top: num(15);
+                font-size:num(22);
+                font-family:PingFang-SC-Regular;
+                font-weight:400;
+                color:rgba(254,38,38,1);
+                overflow: hidden;
+                text-overflow: ellipsis; 
+                display: -webkit-box;
+                -webkit-line-clamp: 1;
+                -webkit-box-orient: vertical;
+            }
+            .over_suanli {
+                position: relative;
+                margin-top:num(28);
+                width: 100%;
+                height: num(16);
+                .progress {
+                    width: 60%;
+                    height: num(16);
+                    background:rgba(228,228,228,1);
+                    border-radius:5px;
+                    overflow: hidden;
+                    .overProgress {
+                        // width: 50%;
+                        height:100%;
+                        background: #3C73FF;
+                    }
+                }
+                p {
+                    position: absolute;
+                    top:0;
+                    right: 0;
+                    width: 36%;
+                    line-height:num(16);
+                    font-size:num(16);
+                    font-family:PingFang-SC-Regular;
+                    font-weight:400;
+                    color:rgba(109,109,109,1);
+                }
+            }
+            .buyDiv {
+                position: relative;
+                margin-top:num(38);
+                width:100%;
+                height: num(80);
+                box-sizing: content-box;
+                .suanli_price {
+                    width: 50%;
+                    height:num(50);
+                    font-size:num(28);
+                    color:#333333;
+                    span {
+                        display: inline-block;
+                        line-height:num(50);
+                        font-size:num(56);
+                        font-family:PingFang-SC-Medium;
+                        font-weight:500;
+                        color:rgba(254,135,29,1);
+                    }
+                }                      
+                p {
+                    margin-top:num(18);
+                    width:50%;
+                    height: num(30);
+                    line-height: num(22);  
+                    font-size:num(22);
+                    font-family:PingFang-SC-Medium;
+                    font-weight:500;
+                    color:rgba(90,89,89,1);
+                }
+                .goBuy {
+                    position:absolute;
+                    right: 0;
+                    top:0;
+                    width:num(232);
+                    height:num(80);
+                    line-height:num(80);
+                    text-align: center;
+                    font-size:num(30);
+                    background:#3C73FF;
+                    border-radius:5px;
+                    color: #ffffff;
+
+                }
+            }
+        }
+    }
+}
+
+#suanli_Unit {
+    width: 100%;
+    height: 100%;
+    background: #FAF9F9; 
+    position: relative;
+    header{
+        width: 100%;;
+        height: num(100);
+        background: #0856F9;
+        display: flex;
+        justify-content:inherit;
+        a{
+            display:block;
+            width: 20%;
+            height: num(100);
+            img {
+                width: num(15);
+                height: num(30);
+                margin-left: num(30);
+                margin-top: num(35);
+            }
+            span{
+                font-size:num(34);
+                color: #fff;
+                margin-left: num(5);    
+                display: inline-block;               
+            }
+        }
+        .closehtml{
+            font-size:num(34);
+            color: #fff;
+            padding-top: num(30); 
+            // margin-left:20%;    
+            display:block;     
+            height: 100%;  
+            width: 10%;
+            text-align: center;
+        }
+        p {
+            width:60%;
+            font-size:num(34);
+            font-weight:500;
+            line-height: num(100);
+            color:#fff;
+            padding-left: 15%;
+            margin: 0;
+        }
+    }
+    .units_xq {
+        margin: auto;
+        margin-top: num(37);
+        width: 92%;
+        height: auto;
+        background: #FAF9F9;
+        .unit_pub {
+            margin-bottom: num(20);
+            width: 100%;
+            height:num(252);
+            background:rgba(255,255,255,1);
+            border-radius:5px;
+            padding:num(32) num(32) 0 num(18);
+            .unit_img {
+                float: left;
+                width:num(174);
+                height:num(178);
+                background:rgba(255,255,255,1);
+                border:1px solid rgba(244,244,244,1);
+                img {
+                    display: block;
+                    height: num(148);
+                    margin:auto;
+                    margin-top:num(15);
+                }
+            }
+            .unit_detail {
+                width: 70%;
+                height:100%;
+                float: right;
+                p {
+                    margin-bottom:num(14);
+                    height:num(22);
+                    font-size:num(22);
+                    font-family:PingFang-SC-Medium;
+                    font-weight:500;
+                    color:rgba(1,1,1,1);
+                    line-height:num(22);
+                    span{
+                        width: 50%;
+                        text-align: left;
+                        display: inline-block;
+                    }
+                }
+                .unit_name {
+                    width:100%;
+                    height:num(32);
+                    line-height:num(32);
+                    font-size:num(32);
+                    font-weight:500;
+                    color:rgba(0,0,0,1);
+                    overflow: hidden;
+                    white-space: nowrap;
+                    text-overflow: ellipsis;
+                }
+            }
+        }
+    }
+}
+

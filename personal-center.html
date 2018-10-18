@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <title>个人中心</title>
+    <link rel="stylesheet" href="./css/1.css/style.css">
+    <script src="./js/jquery-1.11.3.min.js"></script>
+    <script src="./js/public.js"></script>
+    <script src="./js/common.js"></script>
+    <link rel="stylesheet" href="./css/footer.css">
+    <script src="./js/Storage.js"></script>
+</head>
+<body>
+    <div class="people">
+        <header style="position: fixed;z-index:10;">
+            <a href="javascript:history.back(1)" class="back_web">
+                <img src="img/speatil/back_icon2.png" alt="" class="back">
+                <span>返回</span>      
+            </a>
+            <a href="#" class="closehtml">关闭</a>
+            <p>个人中心</p>
+        </header>
+
+        <div style='width: 100%;height:2.5rem;'></div>
+        <div class="information">
+            <!-- <img src="./img/personal/icon.png" alt="">
+            <span>预言家之光</span>
+            <span>ID：1111123</span> -->
+        </div>
+        <div class="people-content">
+            <div class="list unit">
+                <img src="./img/personal/one.png" alt="">
+                <span>算力马机组</span>
+                <img class="jiantou" src="./img/personal/right.png" alt="">
+            </div>
+            <div class="list friend">
+                <img src="./img/personal/two.png" alt="">
+                <span>邀请好友</span>
+                <img class="jiantou" src="./img/personal/right.png" alt="">
+            </div>
+            <div class="list heyue">
+                <img src="./img/personal/three.png" alt="">
+                <span>我的合约</span>
+                <img class="jiantou" src="./img/personal/right.png" alt="">
+            </div>
+        </div>
+        <footer>
+            <a href="./index.html">
+                <img src="./img/footer/1.png"/><p>算力商城</p>
+            </a>
+            <a href="./miner-trusteeship.html">
+                <img src="./img/footer/2.png"/><p>矿机托管</p>
+            </a>
+            <a href="./personal-center.html" class="footer">
+                <img src="./img/footer/3-3.png"/><p>个人中心</p>
+            </a>
+        </footer>
+    </div>
+<script src="./js/footer.js"></script>
+<script>
+     var url = baseurl + 'Wap/PowerCenter/index';
+        var params = {
+
+        };
+        PostApi(url, params, function (data) {
+            if (data.returnCode == "SUCCESS") {
+                console.log(data);
+                $('.information').html(`
+                    <img src="${baseurl}${data.result.headimg}" alt="">
+                    <span>${data.result.nickname}</span>
+                    <span>ID：${data.result.id}</span>
+                 `)
+            }
+        })
+        $('.unit').click(function(){
+            window.location.href='./mine.html'
+        })
+        $('.heyue').click(function(){
+            window.location.href='./suanli_Unit.html'
+        })
+</script>
+</body>
+</html>

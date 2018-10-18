@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>算力马详情</title>
+    <link rel="stylesheet" href="./css/1.css/style.css">
+    <script src="./js/jquery-1.11.3.min.js"></script>
+    <script src="./js/public.js"></script>
+    <script src="./js/common.js"></script>
+    <script src="./js/Storage.js"></script>
+    <script src="./js/layer.js"></script>
+    <link rel="stylesheet" href="./css/layer.css">
+</head>
+<style>
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+    }
+    input[type="number"]{
+        -moz-appearance: textfield;
+    }
+</style>
+
+<body>
+    <div id="details">
+        <header style="position: fixed;z-index:10;">
+            <a style="position: fixed;" href="javascript:history.back(1)">
+                <img src="./img/speatil/header.png" alt="">
+                <span>返回</span>
+            </a>
+            <a href="#" class="closehtml">关闭</a>
+            <p>商品详情</p>
+        </header>
+        <div style="width:100%;height:2.5rem"></div>
+        <section>
+            <div class="xiangqing"></div>
+            <div class="tabDiv">
+                <!-- <div class="listDiv">
+                    <li class="force select tabClass">算力介绍</li>
+                    <li class="parameter tabClass">矿机参数</li>
+                    <li class="problem tabClass">常见问题</li>
+                    <li class="record tabClass">购买记录</li>
+                </div>
+                <div class="contentDiv"> -->
+                    <!-- 算力介绍 -->
+                    <!-- <div class="force-c isShowDiv">
+                        <img src="./img/speatil/xq-1.png" alt="">
+                        <img src="./img/speatil/xq-2.png" alt="">
+                        <img src="./img/speatil/xq-3.png" alt="">
+                        <img src="./img/speatil/xq-4.png" alt="">
+                        <img src="./img/speatil/xq-5.png" alt="">
+                    </div> -->
+                    <!-- <div class="parameter-c isShowDiv">
+                        <h5>iBeLink DSM6T DCR云算力 永久合约 9月13日交割</h5>
+                        <table>
+                            <tr>
+                                <td>矿机算法</td>
+                                <td>Blake256</td>
+                            </tr>
+                            <tr>
+                                <td>额定算力</td>
+                                <td>6 TH/s ± 5%</td>
+                            </tr>
+                            <tr>
+                                <td>功耗</td>
+                                <td>2.1 kW ±5% (at the wall, with 25°C
+                                    ambient temp)</td>
+                            </tr>
+                            <tr>
+                                <td>功耗与算力比</td>
+                                <td>2.1 kW ±5% (at the wall, with 25°C
+                                    ambient temp)</td>
+                            </tr>
+                            <tr>
+                                <td>运行温度</td>
+                                <td>0°C to 40°C</td>
+                            </tr>
+                            <tr>
+                                <td>网络连接</td>
+                                <td >Ethernet</td>
+                            </tr>
+                            <tr>
+                                <td>电压</td>
+                                <td>190V to 240V, 50Hz/60Hz</td>
+                            </tr>
+                            <tr>
+                                <td>认证</td>
+                                <td>FCC, CE</td>
+                            </tr>
+                            <tr>
+                                <td>尺寸</td>
+                                <td>490mm(L)*390mm(W)*180mm(H)</td>
+                            </tr>
+                            <tr>
+                                <td>重量</td>
+                                <td>17.6kg</td>
+                            </tr>
+                            <tr>
+                                <td>Modular PCBdesign</td>
+                                <td>for reliability and the ease of
+                                    maintenance/repair</td>
+                            </tr>
+
+                        </table>
+                    </div> -->
+                    <!-- <div class="problem-c isShowDiv"> -->
+                    <!-- <div class="wripper">
+                            <div class="wen">
+                                <img class="point-up point" src="./img/speatil/up.png" alt=""/>
+                                <img class="point-down point" src="./img/speatil/down.png" alt=""/>
+                                <span>云算力购买后何时产生收益？</span>
+                            </div>
+                            <p class="ti">云算力成功购买后,到交割时间时，开始产生挖矿收益。</p>
+                        </div> -->
+                    <!-- </div> -->
+                    <!-- <div class="record-c isShowDiv">
+                        <ul>
+                            <li>用户</li>
+                            <li>数量（G）</li>
+                            <li>金额（元）</li>
+                            <li>购买时间</li>
+                        </ul>
+                        <ol>
+                            <li>130****5218</li>
+                            <li>100</li>
+                            <li>390</li>
+                            <li>2018-09-12</li>
+                        </ol>
+                    </div> -->
+                <!-- </div> -->
+            </div>
+            <!-- 结算页 -->
+            <div class="balance">
+                <!-- <div class="balance-c">
+                    <div class="balance_js">
+                        <img src="./img/speatil/shangping-1.jpeg" />
+                        <h6>iBeLink DSM6T HCASH云算力</h6>
+                        <img src="./img/speatil/err.png" class="cancel">
+                    </div>
+                    <ul class="btn-numbox shop_num">
+                        <li>
+                            <span class="number">数量</span>
+                        </li>
+                        <li>
+                            <ul class="count">
+                                <li>
+                                    <span id="num-jian" class="num-jian">-</span>
+                                </li>
+                                <li>
+                                    <input type="number" class="input-num" id="input-num" value="0" />
+                                </li>
+                                <li>
+                                    <span id="num-jia" class="num-jia">+</span>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <button class="sure_buy">确认</button>
+                </div> -->
+            </div>
+            <div class="jy-pas">
+                <div class="bg"></div>
+                <div class="mima">
+                    <a class="close_pass">
+                        <img src="./img/speatil/back_icon.png" alt="">
+                        <span>交易密码</span>
+                    </a>
+                    <input type="password" class="passWord" placeholder="请输入交易密码">
+                    <a><button class="orderSuccess">确认</button></a>
+                </div>
+            </div>
+        </section>
+    </div>
+</body>
+
+
+
+<script>
+    var url = baseurl + 'Wap/Power/goods_info';
+    var params = window.location.search.substr(1);
+    var paramsArr = params.split('&');
+    var paramsJson = {};
+    paramsArr.forEach((item, idx) => {
+        paramsJson[item.split('=')[0]] = item.split('=')[1]
+    })
+    
+    console.log(paramsJson);
+    var params = {
+        goods_id: paramsJson.goods_id+'',
+
+    }; 
+    PostApi(url, params, function (data) {
+        if (data.returnCode == "SUCCESS") {
+            console.log(data);
+            window.goods_stock = data.result.info.goods_stock;
+            $('.xiangqing').html(`
+                <div class="headering"><img src="${baseurl}${data.result.info.goods_img}" alt=""></div>
+                <div class="introduce">
+                    <h6>${data.result.info.goods_name}</h6>
+                    <i>${data.result.info.intro}</i>
+                    <div class="progress_bar">
+                        <div class="jindutiao">
+                            <div class="jindu" style="width:${parseInt(data.result.info.proportion)}%"></div>
+                        </div>
+                        <span class="shengyu">剩余算力:${data.result.info.left_power}G</span>
+                    </div>
+                    <div class="pirce"><b>${data.result.info.price}元<i>/G</i></b></div>
+                    <span>云算力售价</span>
+                    <div class="buy_soon">立即购买</div>
+                </div>
+                <div class="cost">
+                    <li>
+                        <img src="./img/speatil/icon-1.png" alt="">
+                        <span>预估产出</span>
+                        <span>${data.result.info.per_earning}DCR/G</span>
+                    </li>
+                    <li>
+                        <img src="./img/speatil/icon-2.png" alt="">
+                        <span>功率</span>
+                        <span>${data.result.info.mining_power}W/h</span>
+                    </li>
+                    <li>
+                        <img src="./img/speatil/icon-3.png" alt="">
+                        <span>管理费</span>
+                        <span>每日产币的${data.result.info.manage_fee}%</span>
+                    </li>
+                    <li>
+                        <img src="./img/speatil/icon-4.png" alt="">
+                        <span>电费</span>
+                        <span>${data.result.info.electricity_fee}元/kw·h</span>
+                    </li>
+                </div>`)
+                $('.tabDiv').html(`
+                <div class="listDiv">
+                    <li class="force select tabClass">算力介绍</li>
+                    <li class="parameter tabClass">矿机参数</li>
+                    <li class="problem tabClass">常见问题</li>
+                    <li class="record tabClass">购买记录</li>
+                </div>
+                <div class="contentDiv"></div>
+                `)
+            $('.contentDiv').html(`
+                <div class="force-c isShowDiv"> ${data.result.desc} </div>
+                <div class="parameter-c isShowDiv">
+                        <h5>${data.result.info.goods_name}</h5>
+                        <table>
+                            <tr>
+                                <td>矿机算法</td>
+                                <td>${data.result.mining_param.product_suanfa}</td>
+                            </tr>
+                            <tr>
+                                <td>额定算力</td>
+                                <td>${data.result.mining_param.product_suanli}</td>
+                            </tr>
+                            <tr>
+                                <td>功耗</td>
+                                <td>${data.result.mining_param.product_gonghao}</td>
+                            </tr>
+                            <tr>
+                                <td>功耗与算力比</td>
+                                <td>${data.result.mining_param.product_suanlibi}</td>
+                            </tr>
+                            <tr>
+                                <td>运行温度</td>
+                                <td>${data.result.mining_param.product_wendu}</td>
+                            </tr>
+                            <tr>
+                                <td>网络连接</td>
+                                <td >${data.result.mining_param.product_wangluo}</td>
+                            </tr>
+                            <tr>
+                                <td>电压</td>
+                                <td>${data.result.mining_param.product_dianya}</td>
+                            </tr>
+                            <tr>
+                                <td>认证</td>
+                                <td>${data.result.mining_param.product_renzheng}
+                            <tr>
+                                <td>尺寸</td>
+                                <td>${data.result.mining_param.product_chicun}</td>
+                            </tr>
+                            <tr>
+                                <td>重量</td>
+                                <td>${data.result.mining_param.product_zhongliang}</td>
+                            </tr>
+                            <tr>
+                                <td>Modular PCBdesign</td>
+                                <td>${data.result.mining_param.product_qita}</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="problem-c isShowDiv"></div>
+                    <div class="record-c isShowDiv">
+                        <ul>
+                            <li>用户</li>
+                            <li>数量（G）</li>
+                            <li>金额（元）</li>
+                            <li>购买时间</li>
+                        </ul>
+                    </div>
+                `)
+            data.result.record.forEach((item, idx) => {
+                $('.record-c').append(`
+                        <ol>
+                            <li>${item.phone}</li>
+                            <li>${item.num}</li>
+                            <li>${item.total_price}</li>
+                            <li>${item.buy_time}</li>
+                        </ol>
+                    `)
+            })
+            data.result.qusetion.forEach((item, idx) => {
+                $('.problem-c').append(`
+                        <div class="wripper">
+                            <div class="wen">
+                                <img class="point-up point" src="./img/speatil/up.png" alt=""/>
+                                <img class="point-down point" src="./img/speatil/down.png" alt=""/>
+                                <span>${item.title}</span>
+                            </div>
+                            <p class="ti">${item.des}</p>
+                        </div>
+                    `)
+            });
+            $('.balance').html(`
+                <div class="balance-c">
+                    <div class="balance_js">
+                        <img src="${baseurl}${data.result.info.goods_img}" />
+                        <h6>${data.result.info.goods_name}</h6>
+                        <img src="./img/speatil/err.png" class="cancel">
+                    </div>
+                    <ul class="btn-numbox shop_num">
+                        <li>
+                            <span class="number">数量</span>
+                        </li>
+                        <li>
+                            <ul class="count">
+                                <li>
+                                    <span id="num-jian" class="num-jian">-</span>
+                                </li>
+                                <li>
+                                    <input type="number" class="input-num" id="input-num" value="0" />
+                                </li>
+                                <li>
+                                    <span id="num-jia" class="num-jia">+</span>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <button class="sure_buy">确认</button>
+                </div>`)
+            
+            var url2=baseurl+'Wap/Power/buy_power';
+
+            // 问题切换
+            $('.wen').click(function () {
+                $(this).find('.point').toggle(200);
+                $(this).parent().find('.ti').toggle(200);
+            })
+            // 选择支付弹框
+            $('.buy_soon').click(function () {
+                $('.balance').fadeIn(400);
+            })
+
+            $('.cancel').click(function () {
+                $('.balance').fadeOut(400);
+            })
+            $('.sure_buy').click(function () {
+                if ($('.input-num').val() == 0) {
+                    alertMsg('请选择数量')
+                } else {
+                    $('.balance').hide();
+                    $('.jy-pas').fadeIn(400);
+                }
+            })
+            $('.close_pass').click(function () {
+                $('.balance').show();
+                $('.jy-pas').fadeOut(400);
+            })
+            $('.orderSuccess').click(function () {
+                if($('.passWord').val()==''){
+                    alertMsg('请输入密码')
+                }else{
+                    PostApi(url2, {num: $('.input-num').val(),goods_id: paramsJson.goods_id, pay_pwd: $('.passWord').val()}, function (data) {
+                        if (data.returnMsg == 'SUCCESS') {
+                            alertMsg('购买成功')
+                            window.location.href = "./index.html"
+                        }else{
+                            alertMsg('购买失败')
+                        }
+                    })
+                    console.log(paramsJson)
+            
+                }
+            })
+
+
+            // tab切换
+            $('.listDiv').on('click', '.tabClass', function () {
+                var index = $(this).index();
+                $('.isShowDiv').hide();
+                $('.tabClass').removeClass('select');
+                $(this).addClass('select');
+                $('.isShowDiv').eq(index).show();
+            })
+
+        }
+    })
+
+</script>
+
+<script>
+    // 购物车
+    var orderSum=1;
+ 
+    $(document).on('click', '#num-jia', function () {
+        console.log(goods_stock)
+        if (parseInt($('#input-num').val()) < parseInt(goods_stock)) {
+            $('#input-num').val(parseInt($('#input-num').val()) + 1)
+        } else {
+            alertMsg('超出库存数量')
+        }
+    })
+    $(document).on('input', '#input-num', function () {
+        console.log(parseInt($('#input-num').val()), goods_stock )
+        if (this.value != '') {
+            if (this.value.substr(0, 1) == '0') {
+                this.value = this.value.substr(1)
+            }
+            if (parseInt(this.value) > parseInt(goods_stock)) {
+                alertMsg('超出库存数量')
+            }
+        } else {
+            $('.input-num').val(0)
+        }
+    })
+    $(document).on('click', '#num-jian', function () {
+        if ($('#input-num').val() <= 0) {
+            $('#input-num').val(0)
+        } else {
+            $('#input-num').val(parseInt($('#input-num').val()) - 1)
+        }
+    })
+
+
+</script>
+
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>我的合约</title>
+    <link rel="stylesheet" href="./css/2.css/css.css">
+    <script src="./js/jquery-1.11.3.min.js"></script>
+    <script src="./js/public.js"></script>
+    <script src="./js/common.js"></script>
+    <script src="./js/Storage.js"></script>
+</head>
+
+<body>
+    <div id="suanli_Unit">
+        <header style="position: fixed;z-index:10;">
+            <a href="javascript:history.back(1)" class="back_web">
+                <img src="img/speatil/back_icon2.png" alt="" class="back">
+                <span>返回</span>
+            </a>
+            <a href="#" class="closehtml">关闭</a>
+            <p>我的合约</p>
+        </header>
+
+        <div style="width:100%;height: 2.25rem"></div>
+        <div class="units_xq">
+            <!-- <div class="unit_pub clearfix">
+                <div class="unit_img">
+                    <img src="./img/speatil/suanli_img.png" alt="">
+                </div>    
+                <div class="unit_detail">
+                    <p class="unit_name">iBeLink DSM6T HCASH云算力</p>
+                    <p>购买时间：2018-07-25 17：40：25</p>
+                    <p>到期时间：2018-08-24 17：40：25</p>
+                    <p>合同倒计时：30天</p>
+                    <p><span>份数：100</span><span>状态：运行中</span></p>
+                </div> 
+            </div> -->
+        </div>
+    </div>
+</body>
+<script>
+    var url = baseurl + 'Wap/PowerCenter/my_contract';
+    var pageNum = 1;
+    var params = {
+        page: pageNum + ''
+    }
+    // function pageao() {
+        PostApi(url, params, function (data) {
+            if (data.returnCode == "SUCCESS") {
+                console.log(data);
+                data.result.forEach((item, idx) => {
+                    $('.units_xq').append(`
+                        <div class="unit_pub clearfix">
+                            <div class="unit_img">
+                                <img src="${baseurl}${item.goods_img}" alt="">
+                            </div>    
+                            <div class="unit_detail">
+                                <p class="unit_name">${item.goods_name}</p>
+                                <p>购买时间：${item.buy_time}</p>
+                                <p>到期时间：${item.end_time}</p>
+                                <p>合同倒计时：${item.day}天</p>
+                                <p><span>份数：${item.num}</span><span>状态：${item.status}</span></p>
+                            </div> 
+                        </div>
+                        `)
+                });
+            }
+        })
+    // } 
+
+</script>
+
+</html>

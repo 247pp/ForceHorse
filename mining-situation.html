@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>开采情况</title>
+    <link rel="stylesheet" href="./css/1.css/style.css">
+    <script src="./js/jquery-1.11.3.min.js"></script>
+    <script src="./js/public.js"></script>
+    <script src="./js/common.js"></script>
+    <script src="./js/Storage.js"></script>
+</head>
+
+<body>
+    <div id="mining">
+        <header style="position: fixed;z-index:10;">
+            <a href="javascript:history.back(1)" class="back_web">
+                <img src="img/speatil/back_icon2.png" alt="" class="back">
+                <span>返回</span>
+            </a>
+            <a href="#" class="closehtml">关闭</a>
+            <p>开采情况</p>
+        </header>
+        <div style='width: 100%;height:2.5rem;'></div>
+        <div class="mining-c">
+            <ul>
+                <li>矿机编号</li>
+                <li>今日产量</li>
+            </ul>
+            <div id="show">
+                <p class="code">
+
+                </p>
+                <p class="yield">
+
+                </p>
+            </div>
+        </div>
+        <div class="page">
+            <div class="btn">上一页</div>
+            <div id="showbox">
+            </div>
+            <div class="btn">下一页</div>
+        </div>
+    </div>
+
+</body>
+
+<script>
+    var url = baseurl + 'Wap/PowerCenter/mills_record';
+    var params = window.location.search.substr(1);
+    var paramsArr = params.split('&');
+    var paramsJson = {};
+    paramsArr.forEach((item, idx) => {
+        paramsJson[item.split('=')[0]] = item.split('=')[1]
+    })
+    console.log(paramsJson);
+    var data = ''
+    var pageNum = 1;
+    var order_id = 1;
+    var params = {
+        order_id: paramsJson.order_id + '',
+        page: pageNum + '',
+    }
+    PostApi(url, params, function (data) {
+        if (data.returnCode == "SUCCESS") {
+            console.log(data);
+            let arr = data.result.list;
+            data.result.list.forEach((item, idx) => {
+                console.log(item)
+                $('.code').append(`
+                    <span>${item.mill_sn}</span>
+                `)
+                $('.yield').append(`
+                    <span>${item.mill_daily_value}</span>
+                `)
+            })
+            var fenye = document.getElementsByClassName('btn');
+            var num = 1;//当前页码
+            var size = 3;
+            var maxnum = Math.ceil(arr.length / size);
+            console.log(maxnum)
+            function lastPage() {
+                for (var i = 1; i > -1; i--) {
+                    var page = document.createElement('button');
+                    page.setAttribute('index', maxnum - i);
+                    page.innerText = maxnum - i;
+                    showbox.appendChild(page);
+                }
+            }
+            function lastPage2() {
+                for (var i = 1; i > 0; i--) {
+                    var page = document.createElement('button');
+                    page.setAttribute('index', maxnum);
+                    page.innerText = maxnum;
+                    showbox.appendChild(page);
+                }
+            }
+            function appendChild() {
+                showbox.innerHTML = '';
+                if (num != 1) {
+                    if ((num - 1) > 2 && ((num + 1) < maxnum)) {
+                        for (var i = 1; i < 2; i++) {
+                            var page = document.createElement('button');
+                            page.setAttribute('index', i);
+                            page.innerText = i;
+                            showbox.appendChild(page);
+                        }
+                        var span = document.createElement('span');
+                        span.innerText = '...';
+                        showbox.appendChild(span);
+                        for (var i = num - 1; i < num + 2; i++) {
+                            var page = document.createElement('button');
+                            page.setAttribute('index', i);
+                            page.innerText = i;
+                            if (i == num) {
+                                page.style.border = 'none';
+                                page.style.color = '#0856F9';
+                            }
+                            showbox.appendChild(page);
+                        }
+                        if (num + 1 < maxnum - 1) {
+                            var span = document.createElement('span');
+                            span.innerText = '...';
+                            showbox.appendChild(span);
+                        }
+                        lastPage2();
+
+                    } else {
+                        if (num - 1 < 2) {
+                            if ((num + 1) < maxnum) {
+                                for (var i = 1; i < num + 2; i++) {
+                                    var page = document.createElement('button');
+                                    page.setAttribute('index', i);
+                                    page.innerText = i;
+                                    showbox.appendChild(page);
+                                    if (i == num) {
+                                        page.style.border = 'none';
+                                        page.style.color = '#0856F9';
+                                    }
+                                }
+                                if ((num + 1) < maxnum - 1) {
+                                    var span = document.createElement('span');
+                                    span.innerText = '...';
+                                    showbox.appendChild(span);
+                                    lastPage2();
+                                } else {
+                                    lastPage2();
+                                }
+                            } else {
+                                for (var i = 1; i < 2; i++) {
+                                    var page = document.createElement('button');
+                                    page.setAttribute('index', i);
+                                    page.innerText = i;
+                                    showbox.appendChild(page);
+                                }
+                                var span = document.createElement('span');
+                                span.innerText = '...';
+                                showbox.appendChild(span);
+                                for (var i = 6; i > -1; i--) {
+                                    var page = document.createElement('button');
+                                    page.setAttribute('index', maxnum - i);
+                                    page.innerText = maxnum - i;
+                                    showbox.appendChild(page);
+                                }
+                            }
+                        } else {
+                            if ((num + 1) < maxnum - 1) {
+                                if (num + 1 < maxnum) {
+                                    for (var i = 1; i < 2; i++) {
+                                        var page = document.createElement('button');
+                                        page.setAttribute('index', i);
+                                        page.innerText = i;
+                                        showbox.appendChild(page);
+                                    }
+                                    if (num - 2 > 1) {
+                                        var span = document.createElement('span');
+                                        span.innerText = '...';
+                                        showbox.appendChild(span);
+                                    }
+                                    if ((num + 1) < maxnum - 1) {
+                                        for (var i = num - 1; i < num + 2; i++) {
+                                            var page = document.createElement('button');
+                                            page.setAttribute('index', i);
+                                            page.innerText = i;
+                                            if (i == num) {
+                                                page.style.border = 'none';
+                                                page.style.color = '#0856F9';
+                                            }
+                                            showbox.appendChild(page);
+                                        }
+                                        if (num + 1 < maxnum - 1) {
+                                            var span = document.createElement('span');
+                                            span.innerText = '...';
+                                            showbox.appendChild(span);
+                                        }
+                                        lastPage2();
+                                    } else {
+                                        for (var i = num - 2; i < num + 1; i++) {
+                                            var page = document.createElement('button');
+                                            page.setAttribute('index', i);
+                                            page.innerText = i;
+                                            if (i == num) {
+                                                page.style.border = 'none';
+                                                page.style.color = '#0856F9';
+                                            }
+                                            showbox.appendChild(page);
+                                        }
+                                    }
+
+                                } else {
+                                    for (var i = num - 1; i < num + 2; i++) {
+                                        var page = document.createElement('button');
+                                        page.setAttribute('index', i);
+                                        page.innerText = i;
+                                        if (maxnum - i == num) {
+                                            page.style.border = 'none';
+                                            page.style.color = '#0856F9';
+                                        }
+                                        showbox.appendChild(page);
+                                    }
+                                    lastPage2();
+                                }
+                            } else {
+                                for (var i = 1; i < 2; i++) {
+                                    var page = document.createElement('button');
+                                    page.setAttribute('index', i);
+                                    page.innerText = i;
+                                    showbox.appendChild(page);
+                                }
+                                if (maxnum > 4) {
+                                    var span = document.createElement('span');
+                                    span.innerText = '...';
+                                    showbox.appendChild(span);
+                                }
+
+                                for (var i = maxnum - num + 1; i > -1; i--) {
+                                    var page = document.createElement('button');
+                                    page.setAttribute('index', maxnum - i);
+                                    page.innerText = maxnum - i;
+                                    if (maxnum - i == num) {
+                                        page.style.border = 'none';
+                                        page.style.color = '#0856F9';
+                                    }
+                                    showbox.appendChild(page);
+                                }
+                            }
+
+                        }
+                    }
+
+                } else {
+                    for (var i = 1; i < 3; i++) {
+                        var page = document.createElement('button');
+                        page.setAttribute('index', i);
+                        page.innerText = i;
+                        showbox.appendChild(page);
+                        if (i == num) {
+                            page.style.border = 'none';
+                            page.style.color = '#0856F9';
+                        }
+                    }
+                    var span = document.createElement('span');
+                    span.innerText = '...';
+                    showbox.appendChild(span);
+                    lastPage()
+                }
+            }
+
+            if (maxnum > 4) {
+                appendChild()
+            } else {
+                for (var i = 0; i < maxnum; i++) {
+                    var page = document.createElement('button');
+                    page.setAttribute('index', i + 1);
+                    page.innerText = i + 1;
+                    showbox.appendChild(page);
+                }
+            }
+
+            //上一页事件
+            fenye[0].onclick = function () {
+                if (num > 1) {
+                    num--;
+                    var start_index = (num - 1) * size;//开始截取的索引
+                    var end_index = num * size;//截取到的索引
+                    console.log(start_index, end_index)
+                    show.innerText = arr.slice(start_index, end_index);
+                    appendChild();
+                } else {
+                    return
+                }
+            }
+            //下一页事件
+            fenye[1].onclick = function () {
+                console.log('点击成功')
+                if (num < maxnum) {
+                    num++;
+                    var start_index = (num - 1) * size;//开始截取的索引
+                    var end_index = num * size;//截取到的索引
+                    show.innerText = arr.slice(start_index, end_index);
+                    appendChild();
+                } else {
+                    return
+                }
+            }
+
+
+            //点击页码分页事件
+            var btns = document.getElementsByTagName('button');
+            for (var i = 0; i < btns.length; i++) {
+                btns[i].onclick = function () {
+                    var index = this.getAttribute('index');
+                    num = index;
+                    var start_index = (index - 1) * size;//开始截取的索引
+                    var end_index = index * size;//截取到的索引
+                    console.log(start_index, end_index)
+                    show.innerText = arr.slice(start_index, end_index)
+                }
+            }
+        }
+    })
+
+
+    $(window).scroll(function () {
+        //下面这句主要是获取网页的总高度，主要是考虑兼容性所以把Ie支持的documentElement也写了，这个方法至少支持IE8
+        var htmlHeight = $(document).height();
+        //clientHeight是网页在浏览器中的可视高度，
+        var clientHeight = $(window).height();
+        //scrollTop滚动条到顶部的垂直高度
+        var scrollTop = $(document).scrollTop();
+        //通过判断滚动条的top位置与可视网页之和与整个网页的高度是否相等来决定是否加载内容；
+        var he = scrollTop + clientHeight;
+        if (he >= htmlHeight) {
+            // addListMore(data);//滑动到底部调用函数
+            pageNum++;
+            pageao();
+        }
+    }); 
+</script>
+
+</html>

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>云端算力马矿机托管</title>
+    <link rel="stylesheet" href="./css/1.css/style.css">
+    <script src="./js/jquery-1.11.3.min.js"></script>
+    <script src="./js/public.js"></script>
+    <script src="./js/common.js"></script>
+    <link rel="stylesheet" href="./css/footer.css">
+    <script src="./js/Storage.js"></script>
+</head>
+<body>
+
+  <div id="miner">
+        <header style="position: fixed;z-index:10;">
+            <a style="position: fixed;" href="javascript:history.back(1)">
+                <img src="./img/speatil/back_icon2.png" alt="">
+                <span>返回</span>
+            </a>
+            <a href="#" class="closehtml">关闭</a>
+            <p>云端算力马</p>
+        </header>
+        <div style='width: 100%;height:2.5rem;'></div>
+        <div class="overview">
+            <h6>综述</h6>
+            <div class="overview-c">
+                <!-- <div class="left">
+                    <span>矿机量</span>
+                    <span>100</span>
+                </div>
+                <table>
+                    <tr>
+                        <td></td>
+                        <td class="miner-type">BTC矿机</td>
+                        <td class="miner-type">ZEC矿机</td>
+                        <td class="miner-type">DCR矿机</td>
+                    </tr>
+                    <tr>
+                        <td class="state">运行中</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>1</td>
+                    </tr>
+                    <tr>
+                        <td class="state">待交割</td>
+                        <td>100</td>
+                        <td>100</td>
+                        <td>100</td>
+                    </tr>
+                    <tr>
+                        <td class="state">已结束</td>
+                        <td>100</td>
+                        <td>100</td>
+                        <td>100</td>
+                    </tr>
+                </table> -->
+            </div>
+        </div>
+        <div class="total-income">
+            <h6>总收益</h6>
+            <div class="produce">
+                <!-- <dl>
+                    <dt>BTC产出</dt>
+                    <dd>100</dd>
+                </dl>
+                <dl>
+                    <dt>ZEC产出</dt>
+                    <dd>100</dd>
+                </dl>
+                <dl>
+                    <dt>DCR产出</dt>
+                    <dd>100</dd>
+                </dl> -->
+            </div>
+            <a href="" class="gomoney">去钱包查看</a>
+        </div>
+        <footer>
+            <a href="./index.html">
+                <img src="./img/footer/1.png"/><p>算力商城</p>
+            </a>
+            <a href="./miner-trusteeship.html"  class="footer">
+                <img src="./img/footer/2-2.png"/><p>矿机托管</p>
+            </a>
+            <a href="./personal-center.html">
+                <img src="./img/footer/3.png"/><p>个人中心</p>
+            </a>
+        </footer>
+  </div>
+  <script src="./js/footer.js"></script>
+
+  <script>
+        var url = baseurl + 'Wap/PowerCenter/deposit';
+        var params = {
+
+        };
+        PostApi(url, params, function (data) {
+            if (data.returnCode == "SUCCESS") {
+                console.log(data);
+                $('.overview-c').html(`
+                    <div class="left">
+                        <span>矿机量</span>
+                        <span>${data.result.total_mill}</span>
+                    </div>
+                    <table>
+                        <tr>
+                            <td></td>
+                            <td class="miner-type">BTC矿机</td>
+                            <td class="miner-type">ZEC矿机</td>
+                            <td class="miner-type">DCR矿机</td>
+                        </tr>
+                        <tr>
+                            <td class="state">待交割</td>
+                            <td>${data.result.btc_run}</td>
+                            <td>${data.result.zec_run}</td>
+                            <td>${data.result.dcr_run}</td>
+                        </tr>
+                        <tr>
+                            <td class="state">已结束</td>
+                            <td>${data.result.btc_stop}</td>
+                            <td>${data.result.zec_stop}</td>
+                            <td>${data.result.dcr_stop}</td>
+                        </tr>
+                    </table>`)
+                $('.produce').html(`
+                    <dl>
+                        <dt>BTC产出</dt>
+                        <dd>${data.result.btc_earn}</dd>
+                    </dl>
+                    <dl>
+                        <dt>ZEC产出</dt>
+                        <dd>${data.result.zec_earn}</dd>
+                    </dl>
+                    <dl>
+                        <dt>DCR产出</dt>
+                        <dd>${data.result.dcr_earn}</dd>
+                    </dl>
+                `)
+            }
+        })
+  </script>
+</body>
+</html>

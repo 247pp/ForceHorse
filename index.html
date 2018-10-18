@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>云端算力马</title>
+    <link rel="stylesheet" href="./css/2.css/css.css">
+    <script src="./js/jquery-1.11.3.min.js"></script>
+	<script src="./js/public.js"></script>
+	<link rel="stylesheet" href="./css/footer.css">
+	<script src="./js/Storage.js"></script>
+	<script src="./js/common.js"></script>
+</head>
+<body>
+    <div id="suanli_Type">
+        <header>
+            <a href="javascript:history.back(1)" class="back_web">
+				<img src="img/speatil/back_icon2.png" alt="" class="back">
+				<span>返回</span>      
+			</a>
+                <a href="#" class="closehtml">关闭</a>
+                <p>云端算力马</p>
+        </header>
+        <div style="width:100%;height: 2.25rem"></div>
+        <div id="suanli_types">
+	        <section id="tabTypes">
+	            <div class="tabType_pub active" id="sumTypes">
+					全部算力
+	            </div>
+	            <div class="tabType_pub">
+					BTC算力
+	            </div>
+	            <div class="tabType_pub">  
+					ETH算力    
+	            </div>
+	            <div class="tabType_pub">
+	            	DCR算力
+	            </div>
+	        </section>
+        </div>
+
+        <div style="width:100%;height: 2.6rem"></div>
+        <div id="contents">
+		</div>
+		<footer>
+			<a class="footer">
+				<img src="./img/footer/1-1.png"/><p>算力商城</p>
+			</a>
+			<a href="./miner-trusteeship.html">
+				<img src="./img/footer/2.png"/><p>矿机托管</p>
+			</a>
+			<a href="./personal-center.html">
+				<img src="./img/footer/3.png"/><p>个人中心</p>
+			</a>
+		</footer>
+	</div>
+	
+
+	<script src="./js/footer.js"></script>
+	<script>
+		var url=baseurl+'Wap/Power/index';
+		var data = '';
+		var pageNum=1;
+		var typeid='';
+		var params = {
+			page : pageNum+'',
+			type : typeid
+		};
+		getdata(url,params);
+
+		$('.tabType_pub').click(function(){
+			typeid = $(this).index();
+			if(typeid == 0){
+				typeid =''
+			}
+				$('#contents').html('');
+			console.log(typeid);
+			pageNum = 1;
+			params = {
+				page : pageNum,
+				type : typeid
+			};
+			getdata(url,params);
+		})
+		function getdata(url,params){
+			console.log(params)
+			PostApi(url, params, function (data) {
+			if (data.returnCode == "SUCCESS") {
+				console.log(data);
+
+					if( typeid ==''){
+						data.result.power.forEach((item,idx) => {
+						$('#contents').append(`
+							<div class="pub_list"  goods_id=${item.goods_id}>
+							<p class="suanli_name">${item.goods_name}</p>
+							<p class="suanli_sm">${item.goods_title}</p>
+							<div class="over_suanli">
+								<div class="progress">
+									<div class="overProgress"  style="width:${parseInt(item.proportion)}%"></div>  
+								</div>
+								<p>剩余算力：${item.left_power}G</p>
+							</div>
+							<div class="buyDiv">
+								<div class="suanli_price">
+									<span>${item.price}元</span>/G
+								</div>
+								<p>云算力售价</p>
+								<div class="goBuy">
+									立即购买
+								</div>
+							</div>
+						</div>
+						`)							
+					  });
+					}
+					else if( typeid ==1){
+						data.result.power.forEach((item,idx) => {
+						$('#contents').append(`
+							<div class="pub_list"  goods_id=${item.goods_id}>
+							<p class="suanli_name">${item.goods_name}</p>
+							<p class="suanli_sm">${item.goods_title}</p>
+							<div class="over_suanli">
+								<div class="progress">
+									<div class="overProgress"  style="width:${parseInt(item.proportion)}%"></div>  
+								</div>
+								<p>剩余算力：${item.left_power}G</p>
+							</div>
+							<div class="buyDiv">
+								<div class="suanli_price">
+									<span>${item.price}元</span>/G
+								</div>
+								<p>云算力售价</p>
+								<div class="goBuy">
+									立即购买
+								</div>
+							</div>
+						</div>
+						`)							
+					  });
+					}else if( typeid ==2){
+						data.result.power.forEach((item,idx) => {
+						$('#contents').append(`
+							<div class="pub_list"  goods_id=${item.goods_id}>
+							<p class="suanli_name">${item.goods_name}</p>
+							<p class="suanli_sm">${item.goods_title}</p>
+							<div class="over_suanli">
+								<div class="progress">
+									<div class="overProgress"  style="width:${parseInt(item.proportion)}%"></div>  
+								</div>
+								<p>剩余算力：${item.left_power}G</p>
+							</div>
+							<div class="buyDiv">
+								<div class="suanli_price">
+									<span>${item.price}元</span>/G
+								</div>
+								<p>云算力售价</p>
+								<div class="goBuy">
+									立即购买
+								</div>
+							</div>
+						</div>
+						`)							
+					  });
+					}else if( typeid ==3){
+						data.result.power.forEach((item,idx) => {
+						$('#contents').append(`
+							<div class="pub_list" goods_id=${item.goods_id}>
+							<p class="suanli_name">${item.goods_name}</p>
+							<p class="suanli_sm">${item.goods_title}</p>
+							<div class="over_suanli">
+								<div class="progress">
+									<div class="overProgress"  style="width:${parseInt(item.proportion)}%"></div>  
+								</div>
+								<p>剩余算力：${item.left_power}G</p>
+							</div>
+							<div class="buyDiv">
+								<div class="suanli_price">
+									<span>${item.price}元</span>/G
+								</div>
+								<p>云算力售价</p>
+								<div class="goBuy">
+									立即购买
+								</div>
+							</div>
+						</div>
+						`)							
+					  });
+					}
+				
+			}
+		})
+		}
+
+		$('#contents').on('click', '.pub_list', function () {
+			let goods_id = $(this).attr('goods_id');
+            window.location.href = "./details.html?goods_id="+ goods_id;
+        })
+
+		$(window).scroll(function () {
+            //下面这句主要是获取网页的总高度，主要是考虑兼容性所以把Ie支持的documentElement也写了，这个方法至少支持IE8
+            var htmlHeight = $(document).height();
+            //clientHeight是网页在浏览器中的可视高度，
+            var clientHeight = $(window).height();
+            //scrollTop滚动条到顶部的垂直高度
+            var scrollTop = $(document).scrollTop();
+            //通过判断滚动条的top位置与可视网页之和与整个网页的高度是否相等来决定是否加载内容；
+            var he = scrollTop + clientHeight;
+            if (he >= htmlHeight) {
+                // addListMore(data);//滑动到底部调用函数
+				pageNum++;
+				params = {
+					page : pageNum,
+					type : typeid
+				};
+                getdata(url,params);
+            }
+		}); 
+	</script>
+	<!-- 滑动 -->
+    <script>
+    	$(document).on('click','.tabType_pub',function() {
+    		$(this).addClass('active').siblings().removeClass('active');
+    	})
+
+		//  滑动类型2
+	    var slideDom = document.getElementById("tabTypes");//滑动区域
+	    var length = slideDom.children.length;//子类节点长度
+	    var index = 0;//初始下标
+	    window.prevX = 0;
+	    slideDom.addEventListener('touchstart', touchstart, false);
+	    slideDom.addEventListener('touchmove', touchmove, false);
+	    slideDom.addEventListener('touchend', touchend, false);  
+	    
+	    //开始滑动
+	    function touchstart(e){
+	        var point = getPoint(e);
+	        window.startX = point.pageX;
+	        //console.log(window.startX);
+	    };
+	    //滑动过程中
+	    function touchmove(e){
+	        e.preventDefault();//阻止默认行为
+	        var point = getPoint(e);
+	        window.moveX = point.pageX;
+	        //console.log(window.moveX);
+	        window.deltaX = window.moveX - window.startX;
+	        //console.log(window.deltaX);
+	        domove(window.deltaX+window.prevX);
+	    };
+	    //结束滑动
+	    function touchend(e){
+	        var x = Math.abs(window.deltaX);
+	        var item_w = document.getElementById("sumTypes").offsetWidth;
+	        if(window.deltaX>0){
+	            if(x>item_w){
+	                var indexd = Math.round(x / item_w);
+	                index = index - indexd;
+	            }else{
+	                if(x/item_w > 0.3){
+	                    index--
+	                }
+	            }
+	        }else if(window.deltaX<0){
+	            if(x>item_w){
+	                var indexd = Math.round(x / item_w);
+	                index = index + indexd;
+	            }else{
+	                if(x/item_w > 0.3){
+	                    index++;
+	                }
+	            }
+	        }
+	        if(index >= (length-1)){
+//	            index = length-1;
+	            index = length - (length - 1);  
+	        }
+	        if(index <0 ){  
+	            index = 0;
+	        }
+	        window.prevX = -index*item_w;
+	        domove(window.prevX,true);
+	    };
+	    //默认以第一个手指的位置计算
+	    function getPoint(e) {
+	        return e.touches ? e.touches[0] : e;
+	    };
+	    //利用js实现移动
+		function domove(x,t){  
+	        if(t){
+	        	tabTypes.style.left = x + 'px';   
+	        }else{
+	        	tabTypes.style.left = x + 'px';    
+	        }
+	    };
+    </script>
+</body>
+</html>
