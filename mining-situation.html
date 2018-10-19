@@ -64,22 +64,52 @@
         order_id: paramsJson.order_id + '',
         page: pageNum + '',
     }
+    
+
+
+    //点击页码分页事件
+    $('#showbox').on('click', 'button', function () {
+        var index = this.getAttribute('index');
+        num = index;
+        var start_index = (index - 1) * size;//开始截取的索引
+        var end_index = index * size;//截取到的索引
+        $('.code').html('')
+        $('.yield').html('')
+        $('#showbox button').each((idx, item) => {
+            $(item).css('color', '#8F8F8F')
+        })
+        this.style.color = '#0856F9';
+        console.log(start_index, end_index)
+        forFn(arr, start_index, end_index);
+    })
     PostApi(url, params, function (data) {
         if (data.returnCode == "SUCCESS") {
-            console.log(data);
-            let arr = data.result.list;
-            data.result.list.forEach((item, idx) => {
-                console.log(item)
-                $('.code').append(`
-                    <span>${item.mill_sn}</span>
-                `)
-                $('.yield').append(`
-                    <span>${item.mill_daily_value}</span>
-                `)
-            })
+            let arr = data.reslut.list;
+            // for (let i = 0; i < 50; i++) {
+            //     arr.push({mill_sn: i + 2, mill_daily_value: i + 3})
+            // }
+            forFn(arr, 0, 13)
+            function forFn (obj, start_idx, end_idx) {
+                let arr = [];
+                for(let i = start_idx; i <= end_idx; i++) {
+                    if (obj[i]) {
+                        arr.push(obj[i])
+                    }
+                }
+                console.log(arr.length)
+                arr.forEach((item, idx) => {
+                    console.log(item)
+                    $('.code').append(`
+                        <span>${item.mill_sn}</span>
+                    `)
+                    $('.yield').append(`
+                        <span>${item.mill_daily_value}</span>
+                    `)
+                })
+            }
             var fenye = document.getElementsByClassName('btn');
             var num = 1;//当前页码
-            var size = 3;
+            var size = 13;
             var maxnum = Math.ceil(arr.length / size);
             console.log(maxnum)
             function lastPage() {
@@ -277,6 +307,7 @@
                     page.setAttribute('index', i + 1);
                     page.innerText = i + 1;
                     showbox.appendChild(page);
+                    $('#showbox button').eq(0).css('color', '#0856F9')
                 }
             }
 
@@ -287,7 +318,9 @@
                     var start_index = (num - 1) * size;//开始截取的索引
                     var end_index = num * size;//截取到的索引
                     console.log(start_index, end_index)
-                    show.innerText = arr.slice(start_index, end_index);
+                    $('.code').html('')
+                    $('.yield').html('')
+                    forFn(arr, start_index, end_index);
                     appendChild();
                 } else {
                     return
@@ -296,28 +329,17 @@
             //下一页事件
             fenye[1].onclick = function () {
                 console.log('点击成功')
+                let arr2 = []
                 if (num < maxnum) {
                     num++;
                     var start_index = (num - 1) * size;//开始截取的索引
                     var end_index = num * size;//截取到的索引
-                    show.innerText = arr.slice(start_index, end_index);
+                    $('.code').html('')
+                    $('.yield').html('')
+                    forFn(arr, start_index, end_index);
                     appendChild();
                 } else {
                     return
-                }
-            }
-
-
-            //点击页码分页事件
-            var btns = document.getElementsByTagName('button');
-            for (var i = 0; i < btns.length; i++) {
-                btns[i].onclick = function () {
-                    var index = this.getAttribute('index');
-                    num = index;
-                    var start_index = (index - 1) * size;//开始截取的索引
-                    var end_index = index * size;//截取到的索引
-                    console.log(start_index, end_index)
-                    show.innerText = arr.slice(start_index, end_index)
                 }
             }
         }
