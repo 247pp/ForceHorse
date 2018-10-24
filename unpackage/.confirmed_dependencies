@@ -1,0 +1,50 @@
+{
+	"miner-trusteeship.html": {
+		"refer": [
+			"personal-center.html",
+			"index.html",
+			"contract.html"
+		]
+	},
+	"index.html": {
+		"refer": [
+			"miner-trusteeship.html",
+			"personal-center.html",
+			"details.html"
+		]
+	},
+	"personal-center.html": {
+		"refer": [
+			"index.html",
+			"mine.html",
+			"miner-trusteeship.html",
+			"upload-sign.html"
+		]
+	},
+	"mine.html": {
+		"refer": [
+			"personal-center.html",
+			"mining-situation.html"
+		]
+	},
+	"mining-situation.html": {
+		"refer": [
+			"mine.html"
+		]
+	},
+	"details.html": {
+		"refer": [
+			"index.html"
+		]
+	},
+	"upload-sign.html": {
+		"refer": [
+			"personal-center.html"
+		]
+	},
+	"contract.html": {
+		"refer": [
+			"miner-trusteeship.html"
+		]
+	}
+}

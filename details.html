@@ -387,8 +387,10 @@
                         if (data.returnMsg == 'SUCCESS') {
                             alertMsg('购买成功')
                             window.location.href = "./index.html"
+                            $('.passWord').val('');
                         }else{
                             alertMsg('购买失败')
+//                          $('.passWord').val('');  
                         }
                     })
                     console.log(paramsJson)

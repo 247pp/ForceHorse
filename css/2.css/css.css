@@ -58,7 +58,7 @@ html, body {
       color: #fff;
       display: inline-block;
       text-align: center;
-      margin-top: 0.75rem; }
+      margin-top: 0.8125rem; }
     #suanli_Type header p {
       width: 60%;
       font-size: 0.85rem;
@@ -124,7 +124,7 @@ html, body {
     margin-bottom: 3rem; }
     #suanli_Type #contents .pub_list {
       width: 100%;
-      height: 9rem;
+      height: 8rem;
       background: #ffffff;
       padding: 0.625rem 0.75rem 0;
       margin-bottom: 0.65rem; }
@@ -238,7 +238,7 @@ html, body {
     #suanli_Unit header .closehtml {
       font-size: 0.85rem;
       color: #fff;
-      padding-top: 0.75rem;
+      padding-top: 0.8125rem;
       display: block;
       height: 100%;
       width: 10%;

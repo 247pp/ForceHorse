@@ -49,7 +49,8 @@ html,body{
                 font-size:num(34);
                 color: #fff; 
                 margin-left: num(5);    
-                display: inline-block;           
+                display: inline-block;  
+//              margin-top:num(-10);         
             }
         } 
             .closehtml{
@@ -59,9 +60,9 @@ html,body{
                 // margin-left: num(5);    
                 display: inline-block;
                 text-align: center;
-                margin-top: num(30);
+                margin-top: num(32.5);
             }
-            p {
+            p { 
                 width:60%;
                 font-size:num(34);
                 font-family:PingFang-SC-Medium;
@@ -138,7 +139,7 @@ html,body{
         margin-bottom: num(120);
         .pub_list {
             width:100%;
-            height: num(360);
+            height: num(320);
             background: #ffffff;
             padding: num(25) num(30) 0;
             margin-bottom: num(26);
@@ -271,7 +272,7 @@ html,body{
         .closehtml{
             font-size:num(34);
             color: #fff;
-            padding-top: num(30); 
+            padding-top: num(32.5); 
             // margin-left:20%;    
             display:block;     
             height: 100%;  

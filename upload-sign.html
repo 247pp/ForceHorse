@@ -5,11 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>上传个人签字</title>
-    <link rel="stylesheet" href="./css/1.css/style.css">
+    <script src="./js/layer.js"></script>
     <script src="./js/jquery-1.11.3.min.js"></script>
     <script src="./js/public.js"></script>
     <script src="./js/common.js"></script>
-  
+    <script src="./js/Storage.js"></script>
+    <link rel="stylesheet" href="./css/1.css/style.css">
+    <link rel="stylesheet" href="./css/layer.css">
 </head>
 <body>
     <div id='upload-sign'>
@@ -29,12 +31,52 @@
                     <div id='tishi'>请在此手写自己签字</div>
                     <div class="control-ops control">
                         <button type="button" class="btn btn-primary" onclick="javascript:clearArea();return false;">取消</button>
-                        <button type="button" class="saveimg" onclick="javascript:saveImageInfo();return false;">确定</button>
+                        <button type="button" class="saveimg">确定</button>
                     </div>
                     <div class="saveimgs"></div>
                 </div>
         </div>
     </div>
+    <script src="./js/liuyan.js"></script>
+
+<script>
+    var url = baseurl + 'Wap/PowerCenter/saveSignName';
+    var params = {};   
+    var obj = {isOn: true};
+    var num = 1;
+    $('.saveimg').on('click', function () {
+        params.path = myCanvas.toDataURL();
+        console.log(params.path);
+        console.log(url)
+        if(!obj.isOn && num != 1){
+            console.log(111)
+            alertMsg('请不要重复操作')
+        } else {
+            PostApi(url, params, function (data) {
+            // alert('1111');
+                if (data.returnCode == "SUCCESS") {
+                    console.log(data);
+                    alertMsg('操作成功')
+                    console.log(obj.isOn, num)
+                    
+                    obj.isOn = false;
+                    num++;
+                } else {
+                    alertMsg('操作失败')
+                }
+                console.log(data);
+            })
+        }
+    })
+    // myCanvas.onclick = function () {
+    //     obj.isOn = true;
+    //     console.log(obj.isOn)
+    // }
+    var can = document.getElementById('myCanvas');
+    can.addEventListener('touchend', function(e) {
+        obj.isOn = true;
+    }, false)
+</script>
 </body>
-<script src="./js/liuyan.js"></script>
+
 </html>
